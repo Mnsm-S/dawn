@@ -1,16 +1,42 @@
 <section class="page-width">
-  <h3>FAQのタイトル</h3>
+  <h3>{{section.settings.title}}</h3>
   <dl>
-    <dt>質問1：配送業者はどこですか？</dt>
-    <dd>回答1：ヤマト運輸でのお届けとなります。</dd>
-    <dt>質問2：配送先住所を変更できますか？</dt>
-    <dd>回答2：可能ですよ。お問い合わせフォームからご連絡ください。</dd>
+    {% for block in section.blocks %}
+      <dt>{{ block.settings.title }}</dt>
+      <dd>{{ block.settings.answer }}</dd>
+    {% endfor %}
   </dl>
 </section>
 
 {% schema %}
   {
     "name": "FAQ",
+    "settings":[
+      {
+        "type": "text",
+        "id": "title",
+        "default":"FAQ",
+        "label": "FAQのタイトル"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq_item",
+        "name": "FAQ項目",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "質問を入力してください"
+          },
+          {
+            "type": "text",
+            "id": "answer",
+            "label": "回答を入力してください"
+          }
+        ]
+      }
+    ],
     "presets": [
       {
         "name": "FAQ"
