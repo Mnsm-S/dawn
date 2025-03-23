@@ -89,6 +89,10 @@
             {%- case block.type -%}
               {%- when '@app' -%}
                 {% render block %}
+              {%- when 'release_date' -%}   {% comment %} 新たに追加した発売日ブロック {% endcomment %}
+                {%- if product.metafields.custom._release_date.value!= blank -%}
+                  <p>{{ block.settings.text }}</p>
+                {%- endif -%} {% comment %} これで空欄の場合は要素ごと非表示にする {% endcomment %}
               {%- when 'text' -%}
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
@@ -732,6 +736,18 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "release_date",
+      "name": "発売日",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "発売日：",
+          "label": "発売日"
+        }
+      ]
     },
     {
       "type": "text",
