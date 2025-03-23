@@ -9,7 +9,28 @@
   "market": [],
   "order": [],
   "page": [],
-  "product": [],
+  "product": [
+    {
+      "key": "subtitle",
+      "namespace": "descriptors",
+      "name": "商品のサブタイトル",
+      "description": "商品名の省略形として使用されます",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "_release_date",
+      "namespace": "custom",
+      "name": "発売日",
+      "description": "発売日を入力します。",
+      "type": {
+        "name": "date_time",
+        "category": "DATE_TIME"
+      }
+    }
+  ],
   "variant": [],
   "shop": []
 }
