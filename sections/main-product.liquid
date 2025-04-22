@@ -93,6 +93,13 @@
                 {%- if product.metafields.custom._release_date.value!= blank -%}
                   <p>{{ block.settings.text }}</p>
                 {%- endif -%} {% comment %} これで空欄の場合は要素ごと非表示にする {% endcomment %}
+
+              {%- when 'engraveTxt' -%}
+                <p>
+                  <label for="engraveTxt">刻印する文言</label>
+                  <input id="engraveTxt" type="text" name="properties[刻印する文言]" form="{{ product_form_id }}">
+                </p>
+
               {%- when 'text' -%}
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
@@ -667,10 +674,10 @@
             {%- endcase -%}
           {%- endfor -%}
 
-          <p class="line-item-property__field">
+          {% comment %} <p class="line-item-property__field">
             <label for="engraveTxt">刻印する文言</label>
             <input id="engraveTxt" type="text" name="properties[刻印する文言]" form="{{ product_form_id }}">
-          </p>
+          </p> {% endcomment %}
           {% comment %} これでカート追加時に文言が表示される。 {% endcomment %}
 
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -753,6 +760,17 @@
           "id": "text",
           "default": "発売日：",
           "label": "発売日"
+        }
+      ]
+    },
+    {
+      "type": "engraveTxt",
+      "name": "刻印する文言",
+      "settings": [
+        {
+          "type": "text",
+          "id": "engraveTxt",
+          "label": "刻印する文言"
         }
       ]
     },
