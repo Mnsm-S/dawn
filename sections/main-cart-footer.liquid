@@ -35,11 +35,11 @@
             placeholder="{{ 'sections.cart.note' | t }}"
           >{{ cart.note }}</textarea>
         </cart-note>
-        <p class="cart-attribute__field">
+        {% comment %} <p class="cart-attribute__field">
           <input type="hidden" name="attributes[無料ラッピング希望]" value="No">
           <input type="checkbox" id="giftRequest" name="attributes[無料ラッピング希望]" form="cart" value="Yes"{% if cart.attributes["無料ラッピング希望"] == "Yes" %} checked{% endif %}>
           <label for="giftRequest">無料ラッピング希望</label>
-        </p>
+        </p> {% endcomment %}
         {% comment %} Cart attributeでの作成では不足している為、適宜id/form項目を追記し、labelタグにはfor="○○(id)"を追記する {% endcomment %}
       {%- endif -%}
 
@@ -48,6 +48,14 @@
           {%- case block.type -%}
             {%- when '@app' -%}
               {% render block %}
+
+            {%- when 'giftRequest' -%}
+              <p class="cart-attribute__field">
+                <input type="hidden" name="attributes[無料ラッピング希望]" value="No">
+                <input type="checkbox" id="giftRequest" name="attributes[無料ラッピング希望]" form="cart" value="Yes"{% if cart.attributes["無料ラッピング希望"] == "Yes" %} checked{% endif %}>
+                <label for="giftRequest">無料ラッピング希望</label>
+              </p> 
+
             {%- when 'subtotal' -%}
               <div class="js-contents" {{ block.shopify_attributes }}>
                 <div>
@@ -188,6 +196,17 @@
     },
     {
       "type": "@app"
+    },
+    {
+      "type": "giftRequest",
+      "name": "無料ラッピング",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "giftRequest",
+          "label": "無料ラッピング"
+        }
+      ]
     }
   ]
 }
