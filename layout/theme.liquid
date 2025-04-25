@@ -100,7 +100,8 @@
       }
 
       :root {
-        --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+        --font-body-family: {{ settings.type_body_font.family }}, {%- unless settings.type_body_jp_font == blank -%} {{ settings.type_body_jp_font }}, {%- endunless -%} {{ settings.type_body_font.fallback_families }};
+        /* 見た目で変化はわからなかったが、googleの検証ツールで「刻印」部分に適用されていることが確認できた。他のフォントでも確認してみる必要がありそう。 */
         --font-body-style: {{ settings.type_body_font.style }};
         --font-body-weight: {{ settings.type_body_font.weight }};
         --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
